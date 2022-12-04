@@ -24,31 +24,22 @@ int main(){
             if(line[i]=='-'){
                 if(beforecomma){
                     range1bot = stoi(num);
-                    //cout << range1bot << "r1b\n";
-                }
-                else{
+                } else{
                     range2bot = stoi(num);
-                    //cout << range2bot << "r2b\n";
                 }
                 num = "";
             } else if(line[i]==','){
                 range1top = stoi(num);
                 num = "";
                 beforecomma = false;
-                //cout << range1top << "r1t\n";
             } else{
                 num = num + line[i];
             }
         }
         range2top = stoi(num);
-        //cout << range2top << "r2b\n";
-        if(range1top - range1bot >= range2top - range2bot){
-            if(range1top >= range2top && range2bot >= range1bot){
-                total += 1;
-            }
-        } else if(range1top <= range2top && range2bot <= range1bot){
+        if(range1bot <= range2top && range2bot <= range1top){
             total += 1;
-        }
+        } 
    }
    cout << total << "\n";
 }
