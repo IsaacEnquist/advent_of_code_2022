@@ -45,7 +45,7 @@ int main(){
 
         crate_stack[stoi(from) - 1].erase(crate_stack[stoi(from) - 1].size()-stoi(move));
 
-        reverse(lifted_letters.begin(), lifted_letters.end());
+        //reverse(lifted_letters.begin(), lifted_letters.end());
 
         crate_stack[stoi(to) - 1] = crate_stack[stoi(to) - 1] + lifted_letters;
 
