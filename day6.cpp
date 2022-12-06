@@ -9,17 +9,34 @@ using namespace std;
 int main(){
     fstream newfile;
     string line;
-    int i {0};
-    char letter[4] = {'j', 'j', 'j', 'j'};
-    newfile.open("test.txt",ios::in); //open a file to perform read operation using file object
+    bool end = true;
+    int i {1};
+    newfile.open("day6.txt",ios::in); //open a file to perform read operation using file object
     getline(newfile, line);
+    char letter[14];
+    
+    for(int k = 0; k < 14; k++){
+        letter[k] = line[13];
+    }
 
     while(true){
+        letter[i%14] = line[i];
         i +=1;
-        letter[i%4] = line[i];
-        if(letter[0] != letter[1] && letter[0] != letter[2] && letter[0] != letter[3] && letter[1] != letter[2] && letter[1] != letter[3] && letter[2] != letter[3]){
+        end = true;
+        for(int k = 0; k < 14; k++){
+            for(int j = k+1; j < 14; j++){
+                if(letter[k] == letter[j]){
+                    cout << letter[k] << "\n";
+                    end = false;
+                    break;
+                }
+            }
+        }
+        if(end){
+
             break;
         }
+        
     }
    
     cout << i;
