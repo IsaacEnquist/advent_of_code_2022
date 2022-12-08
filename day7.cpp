@@ -6,9 +6,10 @@
 #include <string>
 using namespace std;
 int total {0};
-int maxi {1014};
+int maxi {1015};
 string lines[1014];
 int i {1};
+int least_space {1000000000};
 
 bool check_number(string str) {
    for (int i = 0; i < str.length(); i++)
@@ -23,17 +24,25 @@ int myFunction2(int size) {
         size = size + stoi(lines[i].substr(0, lines[i].find(' ')));
     }
     i +=1;
-    if(((lines[i-1].substr(0,4)).compare("$ cd")) == 0 && i-1 != maxi){
+    if(((lines[i-1].substr(0,4)).compare("$ cd")) == 0){
         size = size + myFunction2(0);
     }
     //cout << size << " i: " << i << "\n";
   }
 
+  if(size > 30000000){
+    cout << size << " size \n";
+    if(size < least_space){
+        least_space = size;
+    }
+  }
+
   if(size < 100000){
         total = total + size;
   }
+
   
-  if(((lines[i].substr(0,6)).compare("$ cd .")) == 0 && i != maxi){
+  if(((lines[i].substr(0,6)).compare("$ cd .")) == 0){
     i += 1;
     return size;
   }
@@ -56,6 +65,7 @@ int main(){
         getline(newfile, line);
         lines[i] = line;
     }
-    myFunction2(0);
-    cout << total << " = total";
+    cout << myFunction2(0) <<"\n";
+    cout << total << " = total \n"; // part 1
+    cout << least_space << " = least_space \n";
 }
