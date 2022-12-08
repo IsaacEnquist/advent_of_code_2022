@@ -9,58 +9,52 @@ string lines[99];
 int width{99};
 int height{99};
 
-bool check_top(int w, int h, int size){
+int check_top(int w, int h, int size, int total){
     if(h==0){
-        return true;
+        return total - 1;
     }
     if(lines[h-1][w] -'0' < size){
-        if(check_top(w, h-1, size)){
-            return true;
-        }
+        total = check_top(w, h-1, size, total + 1);
     }
-    return false; 
+    return total; 
 }
 
-bool check_bot(int w, int h, int size){
+int check_bot(int w, int h, int size, int total){
     if(h==height-1){
-        return true;
+        return total - 1;
     }
     if(lines[h+1][w] -'0'< size){
-        if(check_bot(w, h+1, size)){
-            return true;
-        }
+        total = check_bot(w, h+1, size, total + 1);
+
     }
-    return false; 
+    return total; 
 }
 
-bool check_right(int w, int h, int size){
+int check_right(int w, int h, int size, int total){
     if(w==width-1){
-        return true;
+        return total - 1;
     }
     if(lines[h][w+1] -'0'< size){
-        if(check_right(w+1, h, size)){
-            return true;
-        }
+        total = check_right(w+1, h, size, total + 1);
     }
-    return false; 
+    return total; 
 }
 
-bool check_left(int w, int h, int size){
+int check_left(int w, int h, int size, int total){
     if(w == 0){
-        return true;
+        return total - 1;
     }
     if(lines[h][w-1] -'0'< size){
-        if(check_left(w-1, h, size)){
-            return true;
-        }
+        total = check_left(w-1, h, size, total + 1);
     }
-    return false; 
+    return total; 
 }
 
 int main(){
    fstream newfile;
    string line;
-   int total{0};
+   int score {0};
+   int current {0};
    newfile.open("day8.txt",ios::in); //open a file to perform read operation using file object
    for(int i = 0 ; i < height ; i++){
         getline(newfile, line);
@@ -69,10 +63,11 @@ int main(){
 
    for(int h = 1 ; h < height-1 ; h++){
         for(int w = 1 ; w < width-1 ; w++){
-            if(check_bot(w, h, lines[h][w]- '0') || check_top(w, h, lines[h][w] - '0') || check_left(w, h, lines[h][w]- '0') || check_right(w, h, lines[h][w] -'0')){
-                total += 1;
+            current = check_top(w, h, lines[h][w] - '0', 1) * check_bot(w, h, lines[h][w] - '0', 1) * check_left(w, h, lines[h][w] - '0', 1) * check_right(w, h, lines[h][w] - '0', 1);
+            if(score < current){
+                score = current;
             }
         }
    }
-   cout << total  + height*2 + width*2 - 4;
+   cout << score;
 }
