@@ -30,8 +30,7 @@ int myFunction2(int size) {
     //cout << size << " i: " << i << "\n";
   }
 
-  if(size > 30000000){
-    cout << size << " size \n";
+  if(size > 3636277){
     if(size < least_space){
         least_space = size;
     }
@@ -40,6 +39,7 @@ int myFunction2(int size) {
   if(size < 100000){
         total = total + size;
   }
+  cout << size << "\n";
 
   
   if(((lines[i].substr(0,6)).compare("$ cd .")) == 0){
@@ -66,6 +66,6 @@ int main(){
         lines[i] = line;
     }
     cout << myFunction2(0) <<"\n";
-    cout << total << " = total \n"; // part 1
-    cout << least_space << " = least_space \n";
+    cout << total << " = part 1 \n"; // part 1
+    cout << least_space << " = part 2 \n";
 }
