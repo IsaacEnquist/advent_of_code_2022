@@ -110,16 +110,13 @@ int update_value(int monkey, int value){
 }
 
 int main(){
-    //int items[36] = {92, 73, 86, 83, 65, 51, 55, 93, 99, 67, 62, 61, 59, 98, 81, 89, 56, 61, 99, 97, 74, 68, 78, 73, 50, 95, 88, 53, 75, 50, 77, 98, 85, 94, 56, 89};
-    //int current_monkey[36] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7};
-    //int monkeys {8};
-    int items[10] = {79, 98, 54, 65, 75, 74, 79, 60, 97, 74};
-    int current_monkey[10] = {0, 0, 1, 1, 1, 1, 2, 2, 2, 3};
-    int monkeys {4};
+    int items[36] = {92, 73, 86, 83, 65, 51, 55, 93, 99, 67, 62, 61, 59, 98, 81, 89, 56, 61, 99, 97, 74, 68, 78, 73, 50, 95, 88, 53, 75, 50, 77, 98, 85, 94, 56, 89};
+    int current_monkey[36] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7};
+    int monkeys {8};
     int total_instpections[monkeys] = {0};
-    for(int j = 0; j < 20; j++){
+    for(int j = 0; j < 10000; j++){
         for(int l = 0; l < monkeys; l++){
-            for(int i = 0; i < 10; i++){
+            for(int i = 0; i < 36; i++){
                 if(current_monkey[i] == l){
                     total_instpections[l] += 1;
                     items[i] = update_value(l, items[i]);
