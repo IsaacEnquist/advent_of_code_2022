@@ -7,7 +7,7 @@
 #include <array>
 using namespace std;
 
-int throw_to(int monkey, int value){
+long long int throw_to(int monkey, long long int value){
     int throw_to;
     switch (monkey) {
         case 0:
@@ -79,42 +79,42 @@ int throw_to(int monkey, int value){
 }
 
 
-int update_value(int monkey, int value){
+long long int update_value(int monkey, long long int value){
     switch (monkey) {
         case 0:
-            value = (int)((value * 5) / 3);
+            value = (long long int)((value * 5) / 3);
             break;
         case 1:
-            value = (int)((value * value) / 3);
+            value = (long long int)((value * value) / 3);
             break;
         case 2:
-            value = (int)((value * 7) / 3);
+            value = (long long int)((value * 7) / 3);
             break;
         case 3:
-            value = (int)((value + 1) / 3);
+            value = (long long int)((value + 1) / 3);
             break;
         case 4:
-            value = (int)((value + 3) / 3);
+            value = (long long int)((value + 3) / 3);
             break;
         case 5:
-            value = (int)((value + 5) / 3);
+            value = (long long int)((value + 5) / 3);
             break;
         case 6:
-            value = (int)((value + 8) / 3);
+            value = (long long int)((value + 8) / 3);
             break;
         case 7:
-            value = (int)((value + 2) / 3);
+            value = (long long int)((value + 2) / 3);
             break;
     }
     return value;
 }
 
 int main(){
-    int items[36] = {92, 73, 86, 83, 65, 51, 55, 93, 99, 67, 62, 61, 59, 98, 81, 89, 56, 61, 99, 97, 74, 68, 78, 73, 50, 95, 88, 53, 75, 50, 77, 98, 85, 94, 56, 89};
+    long long int items[36] = {92, 73, 86, 83, 65, 51, 55, 93, 99, 67, 62, 61, 59, 98, 81, 89, 56, 61, 99, 97, 74, 68, 78, 73, 50, 95, 88, 53, 75, 50, 77, 98, 85, 94, 56, 89};
     int current_monkey[36] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7};
     int monkeys {8};
     int total_instpections[monkeys] = {0};
-    for(int j = 0; j < 10000; j++){
+    for(int j = 0; j < 20; j++){
         for(int l = 0; l < monkeys; l++){
             for(int i = 0; i < 36; i++){
                 if(current_monkey[i] == l){
@@ -123,8 +123,8 @@ int main(){
                     current_monkey[i] = throw_to(l, items[i]);
                 }
             }
-            for(int k = 0; k < monkeys; k++){
-                cout << total_instpections[k] << " ";
+            for(int k = 0; k < 36; k++){
+                cout << items[k] << " ";
             }
             cout << "\n";
         }     
