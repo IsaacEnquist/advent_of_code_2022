@@ -82,30 +82,31 @@ long long int throw_to(int monkey, long long int value){
 long long int update_value(int monkey, long long int value){
     switch (monkey) {
         case 0:
-            value = (long long int)((value * 5) / 3);
+            value = (long long int)((value * 5));
             break;
         case 1:
-            value = (long long int)((value * value) / 3);
+            value = (long long int)((value * value));
             break;
         case 2:
-            value = (long long int)((value * 7) / 3);
+            value = (long long int)((value * 7));
             break;
         case 3:
-            value = (long long int)((value + 1) / 3);
+            value = (long long int)((value + 1));
             break;
         case 4:
-            value = (long long int)((value + 3) / 3);
+            value = (long long int)((value + 3));
             break;
         case 5:
-            value = (long long int)((value + 5) / 3);
+            value = (long long int)((value + 5));
             break;
         case 6:
-            value = (long long int)((value + 8) / 3);
+            value = (long long int)((value + 8));
             break;
         case 7:
-            value = (long long int)((value + 2) / 3);
+            value = (long long int)((value + 2));
             break;
     }
+    value = value % 9699690;
     return value;
 }
 
@@ -114,7 +115,7 @@ int main(){
     int current_monkey[36] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7};
     int monkeys {8};
     int total_instpections[monkeys] = {0};
-    for(int j = 0; j < 20; j++){
+    for(int j = 0; j < 10000; j++){
         for(int l = 0; l < monkeys; l++){
             for(int i = 0; i < 36; i++){
                 if(current_monkey[i] == l){
@@ -123,10 +124,6 @@ int main(){
                     current_monkey[i] = throw_to(l, items[i]);
                 }
             }
-            for(int k = 0; k < 36; k++){
-                cout << items[k] << " ";
-            }
-            cout << "\n";
         }     
     }
     for(int k = 0; k < monkeys; k++){
