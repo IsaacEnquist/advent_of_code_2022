@@ -40,29 +40,44 @@ graph_l = []
 start = letters.find('S')
 end = letters.find('E')
 
+
 letters = letters[0:start] + 'a' + letters[start+1: ]
 letters = letters[0:end] + 'z' + letters[end+1: ]
 
-for i in range(width*height):
-    graph[i] = []
-    if i > width:
-        if ord(letters[i]) + 1 >= ord(letters[i-width]):
-            graph_l.append((i, i-width))
-            graph[i].append(i-width)
-    if i < width*height - width:
-        if ord(letters[i]) + 1 >= ord(letters[i+width]):
-            graph_l.append((i, i+width))
-            graph[i].append(i+width)   
-    if i % width != 0:
-        if ord(letters[i]) + 1 >= ord(letters[i-1]):
-            graph_l.append((i, i-1))
-            graph[i].append(i-1)
-    if i % width != width - 1:
-        if ord(letters[i]) + 1 >= ord(letters[i+1]):
-            graph_l.append((i, i+1))
-            graph[i].append(i+1)               
-    
+a_pos = []
+min_steps = 700
 
-visited = [] # List for visited nodes.
-queue = []     #Initialize a queu
-print(len(shortest_path(graph, start, end))-1)
+for i in range(width*height):
+    if letters[i] == "a":
+        a_pos.append(i)
+
+
+for k in a_pos:
+    start = k
+    for i in range(width*height):
+        graph[i] = []
+        if i > width:
+            if ord(letters[i]) + 1 >= ord(letters[i-width]):
+                graph_l.append((i, i-width))
+                graph[i].append(i-width)
+        if i < width*height - width:
+            if ord(letters[i]) + 1 >= ord(letters[i+width]):
+                graph_l.append((i, i+width))
+                graph[i].append(i+width)   
+        if i % width != 0:
+            if ord(letters[i]) + 1 >= ord(letters[i-1]):
+                graph_l.append((i, i-1))
+                graph[i].append(i-1)
+        if i % width != width - 1:
+            if ord(letters[i]) + 1 >= ord(letters[i+1]):
+                graph_l.append((i, i+1))
+                graph[i].append(i+1)               
+        
+
+    temp = len(shortest_path(graph, k, end))-1
+
+    if temp < min_steps and temp != -1:
+        min_steps = temp 
+        print(min_steps)
+
+print(min_steps)
