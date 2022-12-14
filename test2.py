@@ -9,12 +9,37 @@ def main():
         lines = f.read().split("\n")
 
         print(get_in_order_scores(lines))
+        print(get_decoder_key(lines))
+
+
+def get_decoder_key(lines):
+    for dp in DPS:
+        lines.append(dp)
+
+    lines = list(filter(lambda l: l != "", lines))
+    key = 1
+
+    lines.sort(key=cmp_to_key(cmp_lines))
+
+    for i, line in enumerate(lines):
+        if line in DPS:
+            key *= (i + 1)
+
+    return key
+
 
 def get_in_order_scores(lines):
     total = 0
     left = ""
 
-    print(cmp_lines('[[],[5,[[6]],7],[],[4]]' ,  '[[1,[[],10,[]],[]],[],[0,[[5,3],4,[],[4,7,8],2],[[1],[]]],[4],[10,8]]'))
+    for i, line in enumerate(lines):
+        if (i - 1) % 3 == 0:
+            if cmp_lines(left, line) == -1:
+                total += ((i - 1) + 3) / 3
+                print(((i - 1) + 3) / 3)
+        if i % 3 == 0:
+            left = line
+
     return int(total)
 
 
@@ -23,7 +48,6 @@ def cmp_lines(left, right):
 
 
 def cmp_packets(left, right):
-    print(left, right)
     for i, r in enumerate(right):
         if i >= len(left):
             return -1

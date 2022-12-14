@@ -42,9 +42,8 @@ for i in range(len(input)-1):
 
 #print(len(list_of_strings))
 list_of_packets = [eval(list_of_strings[i]) for i in range(len(list_of_strings))]
-#list_of_packets += [[[],[[4,[9,4,5,2,8],[3,9],2],6,10,2],[0,[]]]]
+list_of_packets += [[[],[[4,[9,4,5,2,8],[3,9],2],6,10,2],[0,[]]]]
 
-print(list_of_packets[len(list_of_packets)-3])
 
 
 
@@ -60,4 +59,31 @@ for i in range(int(len(list_of_packets)/2)):
 
 
 print(total)
+print(len(list_of_packets))
 
+
+list_of_packets += [[[2]]]
+list_of_packets += [[[6]]]
+
+
+
+for i in range(len(list_of_packets)):
+    for j in range(i, len(list_of_packets)):
+        if compare_packets(list_of_packets[i], list_of_packets[j]) is False:
+            temp = list_of_packets[i]
+            list_of_packets[i] = list_of_packets[j]
+            list_of_packets[j] = temp
+
+print(list_of_packets)
+
+print(len(list_of_packets))
+
+p2 = 0
+p6 = 0
+for j in range(len(list_of_packets)):
+    if list_of_packets[j] == [[2]]:
+        p2 = j+1
+    if list_of_packets[j] == [[6]]:
+        p6 = j+1   
+
+print(p2*p6) 
